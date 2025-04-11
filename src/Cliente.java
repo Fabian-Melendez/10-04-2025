@@ -59,10 +59,24 @@ public class Cliente {
                 '}';
     }
 
-    public void compPrd (Producto producto, int cantidad){
+    public void comPrd(Producto producto, int cantidad) {
+        if (producto.getStk() >= cantidad) {
+            if (producto instanceof Vendible) {
+                double total = ((Vendible) producto).calcprVnt(cantidad);
+                producto.redStock(cantidad);
+                compras.add(cantidad + " x " + producto.getNom() + " = " + total + "€");
+                ttlGasto += total;
+            }
+        } else {
+            System.out.println("No hay suficiente stock de " + producto.getNom());
+        }
     }
 
     public void mostCmp(){
-        System.out.println("La lista de compras es: "+compras);
+        System.out.println("Cliente "+nomc+"("+correo+")");
+        for (String comp : compras){
+            System.out.println("-"+ comp);
+        }
+        System.out.println("Total gastado $"+ttlGasto);
     }
 }

@@ -55,6 +55,9 @@ abstract class Producto {
                 ", stk=" + stk +
                 '}';
     }
+    public void redStock(int cantidad) {
+        this.stk -= cantidad;
+    }
     public void mostDet(){
         System.out.println("Nombre del producto: "+nom);
         System.out.println("Marca del producto: "+mar);
